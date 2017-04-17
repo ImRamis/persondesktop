@@ -1,0 +1,65 @@
+﻿<Window x:Class="Live_Your_Life.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        WindowStartupLocation="CenterScreen"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Live_Your_Life"
+        mc:Ignorable="d"
+        Title="Ionic Creator" Height="660.404" Width="1020.264" WindowStyle="ToolWindow" ResizeMode="NoResize" Topmost="True" Background="Black">
+    <StackPanel Background="#FF9798A8">
+        <Menu>
+            <MenuItem Header="File" >
+                <MenuItem Header="Create App" Click="CreateNew"/>
+                <MenuItem Header="Exit" Click="Exit"/>
+            </MenuItem>
+            <MenuItem Header="Devices Views"></MenuItem>
+            <MenuItem Header="Test">
+                <MenuItem Header="Simulate" Click="Simulate"/>
+            </MenuItem>
+        </Menu>
+        <Canvas Visibility="Hidden" Name="MainMenu">
+            <ListBox Name="folders" Height="574" Width="475" Canvas.Left="30" Canvas.Top="20"/>
+            <Button Content="Create new Project" Click="CreateNew" Canvas.Left="696" Canvas.Top="274" Height="69" Width="137"/>
+            <Button Content="Open Project" Click="OpenProject" Canvas.Left="522" Canvas.Top="44" Height="69" Width="137"/>
+        </Canvas>
+        <Canvas VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Visibility="Visible" Name="WorkingSpace">
+            <WebBrowser Height="660" Width="1020" Name="Titanium" />
+        </Canvas>
+        <Canvas  Visibility="Hidden"  Name="WorkingSpaceOld">
+            <Grid Name="Pages" Height="253" Width="303" Canvas.Left="10" Canvas.Top="20" Background="{DynamicResource {x:Static SystemColors.WindowFrameBrushKey}}">
+                <Label Content="Pages" Margin="0,0,0,-19" Foreground="#FFD8ECFF"/>
+                <Button Content="Add Page" Click="pageAdder" Margin="214,6,6,225" />
+                <ListView Name="pagesListView" Margin="0,33,0,0" Background="#FF231B1B" />
+            </Grid>
+            <Grid Name="Components" Background="{DynamicResource {x:Static SystemColors.WindowFrameBrushKey}}" Height="284" Width="303" Canvas.Left="10" Canvas.Top="310">
+                <Label Content="Components"   Foreground="#FFD8ECFF" />
+                <ListView Name="componentsListView" Margin="0,25,0,0" Background="#FF231B1B" />
+            </Grid>
+            <Grid Width="386" HorizontalAlignment="Left" Height="574" VerticalAlignment="Top" Background="#FF646464" Canvas.Left="334" Canvas.Top="20">
+                <Grid.Effect>
+                    <DropShadowEffect Color="#FF111111" Direction="0" RenderingBias="Quality" ShadowDepth="-1"/>
+                </Grid.Effect>
+            </Grid>
+            <Grid Height="574" Width="269" Background="{DynamicResource {x:Static SystemColors.WindowFrameBrushKey}}"  Canvas.Left="730" Canvas.Top="20">
+                <Label Content="Page Info - Component Info"  Foreground="#FFD8ECFF" Margin="4,0,-4,0"/>
+            </Grid>
+        </Canvas>
+        <Canvas HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" Name="CreationSpace" Visibility="Hidden">
+            <TextBox Name="location" Height="37" TextWrapping="Wrap" Text="exampleProject" FontSize="24px" Canvas.Top="538" Canvas.Left="409" Width="276"/>
+            <Button Content="Create Project" Click="CreateProject" RenderTransformOrigin="0.516,0.405" Canvas.Left="691" Canvas.Top="537" Height="37" Width="158"/>
+            <ComboBox FontSize="20px"  SelectionChanged="templateInfo_SelectionChanged" SelectedIndex="0" Name="templateInfo" Canvas.Left="16" Canvas.Top="538" Width="388" Height="37">
+                <ComboBoxItem Content="blank" HorizontalAlignment="Left" Width="274"/>
+                <ComboBoxItem Content="menu" HorizontalAlignment="Left" Width="274"/>
+                <ComboBoxItem Content="tabs" HorizontalAlignment="Left" Width="274"/>
+            </ComboBox>
+            <Label Content="Template" Canvas.Left="16" Canvas.Top="507"/>
+            <Image Name="Template" Width="723" Height="460" Canvas.Left="140" Canvas.Top="48" Source="pack://siteoforigin:,,,/Resources/blank.png" Stretch="Fill"/>
+            <Button Content="Cancel" Canvas.Left="854" Canvas.Top="538" Height="37" Width="137" Click="CancelCreate"/>
+            <Label Content="Project Name" Canvas.Left="409" Canvas.Top="507"/>
+        </Canvas>
+        <Canvas Name="LoaderSpace" Visibility="Hidden">
+            <TextBlock Text="Loading Resources!" FontSize="54px" Canvas.Left="200" Canvas.Top="300" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </Canvas>
+    </StackPanel>
+</Window>
